@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="Andreas Wachter">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+  <h1>Add config</h1>
+
+  <br>
+  <form action="/new" method="post">
+  Name:<br>
+  <input name="name"></input>
+  <br>
+  Loadbalancer: <br>
+  <input name="lb"></input>
+  <br>
+  Url: <br>
+  <input name="domain"></input>
+  <br>
+  Network: <br>
+  <input name="network"></input>
+  <br>
+  Config: <br>
+  <textarea rows="4" cols="50" name="config">Please put your config here</textarea>
+  <br><br>
+  <input type="submit" value="add">
+  </form>
+  <div id="done"></div>
+</body>
+<script src="/new"></script>
+</html>
