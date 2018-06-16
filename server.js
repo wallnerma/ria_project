@@ -3,16 +3,18 @@
 // BASE SETUP
 // ==============================
 
+var yml = require('read-yaml');
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 8081;
 var router = express.Router();
 var bodyParser = require('body-parser');
 var request = require('request');
 var sqlite = require('sqlite3').verbose();
+var config = yml.sync('config.yml');
+var port = process.env.PORT || config["server"]["port"];
 var db; 
 let find_json = [];
-
+var config = yml.sync('config.yml');
 function init() {
   db = new sqlite.Database('./.db/dictionary.db', (err) => {
     if (err) {
@@ -104,7 +106,7 @@ async function dbSelectWord(lang, word) {
   var row = await db.getAsync(query);
 
   if (!row) {
-    console.log("upps");
+    row = {status: "nothing found"};
   }
 
   return new Promise(resolve => {
@@ -138,13 +140,19 @@ router.get('/remove', function (req, res) {
 
 // ROUTES WITH PARAMETER
 
-router.post('/new', function (req, res) {
+router.post('/new', async function (req, res) {
   var german = req.body.german;
   var english = req.body.english;
 
   init();
   insert("translate", german, english);
+  find_json = await dbSelectWord("german", german);
   dbClose();
+  if (find_json["status"] != "nothing found") {
+    res.send({status: "ok"});
+  } else {
+    res.send(find_json);
+  }
 });
 
 router.get("/find/:word", async function (req, res) {
@@ -170,5 +178,5 @@ router.get('/findall', async function (req, res) {
 
 app.use('/', router);
 
-app.listen(port);
+app.listen(port, config["server"]["ip"]);
 console.log("Making le voodoo on port " + port + "! Go and check it out!");
