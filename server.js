@@ -101,6 +101,22 @@ async function dbSelectAll() {
   })
 }
 
+async function dbDeleteWord(lang, word) {
+  var query = "DELETE FROM translate WHERE ??LANG?? like '??WORD??'".replace("??WORD??", word).replace("??LANG??", lang);
+  console.log(query);
+  var row = await db.runAsync(query);
+
+  if (!row) {
+    row = {status: "deleted"};
+  }
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(row);
+    }, 100);
+  })
+}
+
 async function dbSelectWord(lang, word) {
   var query = "SELECT german, english FROM translate WHERE ??LANG?? like '??WORD??%'".replace("??WORD??", word).replace("??LANG??", lang);
   var row = await db.getAsync(query);
@@ -116,6 +132,16 @@ async function dbSelectWord(lang, word) {
   })
 }
 
+function deleteWord(lang, word) {
+  init();
+  find_json = dbDeleteWord(lang, word);
+  dbClose();
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(find_json);
+    }, 100);
+  })
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -152,6 +178,27 @@ router.post('/new', async function (req, res) {
     res.send({status: "ok"});
   } else {
     res.send(find_json);
+  }
+});
+
+router.post('/delete', async function (req, res) {
+  var word;
+  var language;
+  if (req.body.german !== undefined && req.body.english !== undefined) {
+    res.send({status: "Please use only one language"});
+  } else {
+    if (req.body.german !== undefined) {
+      word = req.body.german;
+      language = "german";
+      find_json = await deleteWord(language, word);
+      res.send(find_json);
+    } else if (req.body.english !== undefined) {
+      word = req.body.english;
+      language = "english";
+      console.log(language);
+      find_json = await deleteWord(language, word);
+      res.send(find_json);
+    } 
   }
 });
 
