@@ -1,5 +1,5 @@
 
-*** How to get the project running ***
+# How to get the project running
 
 - First of all, check if and which version of node.js you have installed:
     CLI where node
@@ -15,8 +15,8 @@
 - if you receive the following msg, you're up and running: "Making le voodoo on port 8081! Go and check it out!"
 
 
-*** START: update node version - on Windows *** 
-** STEP 1: uninstall old versions of node / npm **
+# START: update node version - on Windows
+## STEP 1: uninstall old versions of node / npm **
     https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows
  - Uninstall from Programs & Features with the uninstaller.
  - Reboot (or you probably can get away with killing all node-related processes from Task Manager).
@@ -30,14 +30,14 @@
  - Check your %PATH% environment variable to ensure no references to Nodejs or npm exist.
  - If it's still not uninstalled, type where node at the command prompt and you'll see where it resides -- delete that (and probably the parent directory) too.
  - Reboot, for good measure.
-** STEP 2: install nvm **
+## STEP 2: install nvm
     https://github.com/coreybutler/nvm-windows/releases
  - download the latest nvm-setup.zip
  - unzip and run it, follow the setup wizard
  - start a new CLI and type "nvm" to check if its properly installed, you should get the running version and usage information. 
-** STEP 3: install node & npm **
+## STEP 3: install node & npm 
  - type "nvm install latest" into your CLI and restart it
  - "nvm arch" shows if node is running in 32 or 64 bit mode, "nvm list" lists the node.js installations.
  - type "nvm use yourVersionNumber", you should receive something like this: 'Now using node v10.5.0 (64-bit)'
  - check again "node --version" and go on with the installation of our project 
- *** END: update node version - on Windows *** 
+ ### END: update node version - on Windows
