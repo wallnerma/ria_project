@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta name="author" content="Andreas Wachter">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <title>RIA | Projekt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <meta name="author" content="Wachter, Tomek, Wresnik, Wallner">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 
-</head>
+  <body>
+    <div class="bgimg display-container text-white">
+    <div class="display-middle xlarge">
+      <h1>Add config</h1>
 
-<body>
+      <br>
+      <form action="/new" method="post">
+      Name:<br>
+      <input name="name"></input>
+      <br>
+      Loadbalancer: <br>
+      <input name="lb"></input>
+      <br>
+      Url: <br>
+      <input name="domain"></input>
+      <br>
+      Network: <br>
+      <input name="network"></input>
+      <br>
+      Config: <br>
+      <textarea rows="4" cols="50" name="config">Please put your config here</textarea>
+      <br><br>
+      <input type="submit" value="add">
+      </form>
+      <div id="done"></div>
+    </div>
+    <div class="display-topleft container xxlarge">
+        <p><a href="index.html" target="_self" ><button class="button brown">back</button></a></p>
+    </div>   
 
-  <h1>Add config</h1>
-
-  <br>
-  <form action="/new" method="post">
-  Name:<br>
-  <input name="name"></input>
-  <br>
-  Loadbalancer: <br>
-  <input name="lb"></input>
-  <br>
-  Url: <br>
-  <input name="domain"></input>
-  <br>
-  Network: <br>
-  <input name="network"></input>
-  <br>
-  Config: <br>
-  <textarea rows="4" cols="50" name="config">Please put your config here</textarea>
-  <br><br>
-  <input type="submit" value="add">
-  </form>
-  <div id="done"></div>
-</body>
+  </div>
+  </body>
 <script src="/new"></script>
 </html>
