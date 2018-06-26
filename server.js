@@ -146,11 +146,11 @@ function deleteWord(lang, word) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/sites', express.static(__dirname + "/sites"));
+app.use(express.static('imgs'));
 
 // ROUTES
 // ==============================
 
-/*
 router.get('/', function (req, res) {
   res.sendfile("sites/index.html");
 });
@@ -162,7 +162,6 @@ router.get('/add', function (req, res) {
 router.get('/remove', function (req, res) {
   res.sendfile("sites/remove.html");
 });
-*/
 
 // ROUTES WITH PARAMETER
 
