@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 
   <head>
-    <title>RIA | Projekt</title>
+    <title>RIA | Project</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -13,26 +13,17 @@
   <body>
     <div class="bgimg display-container text-white">
       <div class="display-middle xlarge">
-        <h1>Add config</h1>
+        <h1>Add a new word</h1>
 
         <br>
         <form action="/new" method="post">
-        Name:<br>
-        <input name="name">
-        <br>
-        Loadbalancer: <br>
-        <input name="lb">
-        <br>
-        Url: <br>
-        <input name="domain">
-        <br>
-        Network: <br>
-        <input name="network">
-        <br>
-        Config: <br>
-        <textarea rows="4" cols="50" name="config">Please put your config here</textarea>
-        <br><br>
-        <input type="submit" value="add">
+        german:<br/>
+        <input name="german" id="german">
+        <br/><br/>
+        english:<br/>
+        <input name="english" id="english">
+        <br/><br/>
+        <input type="submit" value="add" class="button brown">
         </form>
         <div id="done"></div>
       </div>

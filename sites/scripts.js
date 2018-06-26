@@ -13,12 +13,18 @@ function loadJson() {
 }
 
 function myFunction(arr) {
-    var out = "";
+    var out = "<ul>";
     var i;
     for (i = 0; i < arr.length; i++) {
-        out += '<a href="/find/' + arr[i].name + '">' + arr[i].name + '<br>';
+        out += '<li>' + arr[i].german + ' | ' + arr[i].english
+            //+ '<form action="/delete" method="post" target="_self" class="form">' 
+            //+ '<button class="button brown">delete</button>'
+            //+ '</form>'
+            + '</li>'
+        //'<a href="/find/' + arr[i].german + '">' + arr[i].english + '<br>';
     }
-    document.getElementById("configs").innerHTML = out;
+    out += "</ul>";
+    document.getElementById("all").innerHTML = out;
 }
 
 function loadWord() {
@@ -60,3 +66,5 @@ function loadAdd() {
     xmlhttp.send();
 }
 */
+
+loadJson(); 
