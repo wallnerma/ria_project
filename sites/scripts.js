@@ -21,6 +21,28 @@ function myFunction(arr) {
     document.getElementById("configs").innerHTML = out;
 }
 
+function loadWord() {
+    var xmlhttp = new XMLHttpRequest();
+    var word = document.getElementById("search").value;
+    console.log(word);
+    var url = "/find/" + word;
+
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var myJson = JSON.parse(this.responseText);
+            myJsonFunction(myJson);
+        }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+function myJsonFunction(myJson) {
+    var out = "";
+    out = 'German: ' + myJson.german + ' English: ' + myJson.english;
+    document.getElementById("word").innerHTML = out;
+}
+
 /*
 function loadAdd() {
     var xmlhttp = new XMLHttpRequest();

@@ -163,6 +163,10 @@ router.get('/remove', function (req, res) {
   res.sendfile("sites/remove.html");
 });
 
+router.get('/search', function (req, res) {
+    res.sendfile("sites/search.html");
+});
+
 // ROUTES WITH PARAMETER
 
 router.post('/new', async function (req, res) {
