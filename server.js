@@ -8,7 +8,6 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
-var request = require('request');
 var sqlite = require('sqlite3').verbose();
 var config = yml.sync('config.yml');
 var port = process.env.PORT || config["server"]["port"];
@@ -102,7 +101,7 @@ async function dbSelectAll() {
 }
 
 async function dbDeleteWord(lang, word) {
-  var query = "DELETE FROM translate WHERE ??LANG?? like '??WORD??'".replace("??WORD??", word).replace("??LANG??", lang);
+  var query = "DELETE FROM translate WHERE ??LANG?? like '??WORD??';".replace("??WORD??", word).replace("??LANG??", lang);
   console.log(query);
   var row = await db.runAsync(query);
 
@@ -161,10 +160,6 @@ router.get('/add', function (req, res) {
 
 router.get('/remove', function (req, res) {
   res.sendfile("sites/remove.html");
-});
-
-router.get('/search', function (req, res) {
-    res.sendfile("sites/search.html");
 });
 
 // ROUTES WITH PARAMETER
