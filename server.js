@@ -181,22 +181,28 @@ router.post('/new', async function (req, res) {
 
 router.post('/delete', async function (req, res) {
   var word;
-  var language;
-  if (req.body.german !== undefined && req.body.english !== undefined) {
-    res.send({status: "Please use only one language"});
-  } else {
-    if (req.body.german !== undefined) {
-      word = req.body.german;
-      language = "german";
+  if (req.body.word !== undefined) {
+      word = req.body.word;
+      console.log(word);
+      init();
+      find_json = await dbDeleteWord("german", word);
+      init();
+      find_json = await dbDeleteWord("english", word);
+
+      /*
+      if (find.status === "not found" && find2.status === "not found") {
+        res.send(find.status());
+      }
+
+      if (find.status === "not found") {
+          language = "english";
+      } else if (find2.status === "not found") {
+              language = "german";
+          }
+      }
       find_json = await deleteWord(language, word);
+      */
       res.send(find_json);
-    } else if (req.body.english !== undefined) {
-      word = req.body.english;
-      language = "english";
-      console.log(language);
-      find_json = await deleteWord(language, word);
-      res.send(find_json);
-    } 
   }
 });
 
@@ -205,6 +211,12 @@ router.get("/find/:word", async function (req, res) {
   init();
   find_json = await dbSelectWord("german", word);
   dbClose();
+  if (find_json.status === "nothing found") {
+      init();
+      find_json = await dbSelectWord("english", word);
+      dbClose();
+  }
+
   console.log(find_json);
   res.send(find_json);
 });

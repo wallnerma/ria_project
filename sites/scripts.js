@@ -45,7 +45,12 @@ function loadWord() {
 
 function myJsonFunction(myJson) {
     var out = "";
-    out = 'German: ' + myJson.german + ' English: ' + myJson.english;
+    if (myJson.german === undefined){
+        out = "Sorry, nothing found";
+    } else {
+        out = 'German: ' + myJson.german + ' English: ' + myJson.english;
+        vibrate();
+    }
     document.getElementById("word").innerHTML = out;
 }
 
@@ -71,6 +76,7 @@ function AddFunction(myJson) {
     var out = "";
     if (myJson.status == "ok"){
         out = 'Added it';
+        vibrate();
     } else {
         out = 'There was a mistake';
     }
@@ -80,7 +86,7 @@ function AddFunction(myJson) {
 function removeWord() {
     var xmlhttp = new XMLHttpRequest();
     var word = document.getElementById("name").value;
-    var params = {"german": word};
+    var params = {"word": word};
     var url = "/delete";
 
     xmlhttp.onreadystatechange = function () {
@@ -92,17 +98,18 @@ function removeWord() {
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(params));
-    loadJson();
 }
 
 function RemoveFunction(myJson) {
     var out = "";
     if (myJson.status == "deleted"){
         out = 'Removed it';
+        vibrate();
     } else {
         out = 'There was a mistake';
     }
     document.getElementById("removed").innerHTML = out;
+    loadJson();
 }
 
 /*
@@ -122,5 +129,27 @@ function loadAdd() {
     xmlhttp.send();
 }
 */
+function getLocation(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        document.getElementById("geo").innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    lat = position.coords.latitude
+    lon = position.coords.longitude
 
-loadJson(); 
+    document.getElementById("geo").innerHTML = "Dein Standort: Breitengrad: " + lat + " | Längengrad: " + lon;
+}
+
+function vibrate() {
+    var supportsVibrate = "vibrate" in navigator;
+
+    if (supportsVibrate) {
+        function myFunction() {
+            var time = document.getElementById("seconds").value;
+            navigator.vibrate(time * 1000);
+        }
+    }
+}
