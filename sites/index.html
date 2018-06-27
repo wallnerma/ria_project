@@ -27,22 +27,19 @@
                 <button class="button brown">search</button>
             </form>
         </div>
-        <div class="display-bottomleft container xxlarge">
+        <div class="display-bottomleft container xxlarge" id="relative">
             <p>RIA Project</p>
-            <p>Andreas Wachter, Christine Tomek,
-                <br/>Georg Wresnik, Marcus Wallner</p>
+            <p>Andreas Wachter, Christine Tomek, Georg Wresnik, Marcus Wallner</p>
         </div>
     </div>
-    <footer>
-            <p class="display-bottomright">
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img style="border:0;width:88px;height:31px"
-                         src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
-                         alt="CSS ist valide!" />
-                </a>
-                <p id="geo"></p>
-                <script>window.onload=getLocation()</script>
-            </p>
-    </footer>
+    <div class="display-bottomright container">
+        <p class="xlarge text-white" id="geo"></p>
+        <script>window.onload=getLocation()</script>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                 src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                  alt="CSS ist valide!" />
+        </a>
+    </div>
 </body>
 </html>

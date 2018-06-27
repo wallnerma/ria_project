@@ -138,9 +138,11 @@ function getLocation(){
 }
 function showPosition(position) {
     lat = position.coords.latitude
+    lat = lat.toFixed(4)
     lon = position.coords.longitude
+    lon = lon.toFixed(4)
 
-    document.getElementById("geo").innerHTML = "Dein Standort: Breitengrad: " + lat + " | Längengrad: " + lon;
+    document.getElementById("geo").innerHTML = "Your location: <br\>latitude: " + lat + "<br\>longitude: " + lon + "<br\>";
 }
 
 function vibrate() {
